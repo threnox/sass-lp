@@ -1,0 +1,440 @@
+@charset "utf-8";
+@import "variables";
+
+/*** CSSreset ***/
+* {
+  box-sizing: border-box;
+}
+body {
+  color: #333;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+html, body,
+ul, ol, li,
+h1, h2, h3, h4, h5, h6,
+p, section, article, header, footer,
+nav, form, input, div {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+table {
+  border-collapse: collapse;
+}
+/*** media query ***/
+@mixin mediaXl {
+  @media screen and (min-width: $widthXl) {
+    @content;
+  }
+}
+@mixin mediaPc {
+  @media screen and (max-width: $widthXl) {
+    @content;
+  }
+}
+@mixin mediaTab {
+  @media screen and (max-width: $widthLg) {
+    @content;
+  }
+}
+@mixin mediaSp {
+  @media screen and (max-width: $widthMd) {
+    @content;
+  }
+}
+@mixin mediaXs {
+  @media screen and (max-width: $widthSm) {
+    @content;
+  }
+}
+/*** other @mixin ***/
+@mixin bgImg($url) {
+  background-image: url($url);
+  //urlを '' で囲うこと！
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+@mixin box($bgColor: #fff, $color: #000, $fWeight: 400) {
+  background-color: $bgColor;
+  color: $color;
+  font-weight: $fWeight;
+}
+@mixin centering {
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+@mixin flexSa {
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+}
+@mixin flexSb {
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+/*** global ***/
+@mixin logoAnm($width: $border, $color: lighten($subColor, 30%)) {
+  from {
+    border: none;
+  }
+  to {
+    border: solid $width $color;
+  }
+}
+@mixin animation ($name, $Duration, $timing) {
+  // -webkit-animation: $name $Duration $timing;
+  animation: $name $Duration $timing;
+}
+@mixin rotate {
+  from {
+    transform: rotate(7deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+.wrap {
+  overflow-x: hidden;
+}
+.container {
+  max-width: 960px;
+}
+.br-sp {
+  display: none;
+  @include mediaSp {
+    display: block;
+  }
+}
+.br-xs {
+  display: none;
+  @include mediaXs {
+    display: block;
+  }
+}
+/*** top ***/
+.top {
+  height: 700px;
+  @include bgImg('img/top-bg.jpg');
+  .inner {
+    background-color: rgba(255,255,255,0.7);
+    //背景画像だけ透過
+  }
+  .container {
+    height: 700px;
+    @include flexSb;
+    @include mediaSp {
+      padding: 40px 0 0;
+      display: block;
+    }
+  }
+  &-logo {
+    @keyframes border-anm {
+      @include logoAnm;
+    }
+    @keyframes rotate {
+      @include rotate;
+    }
+    margin: 0 auto;
+    background-color: lighten($subColor, 40%);
+    border: solid $border lighten($subColor, 30%);
+    width: 50%;
+    @include animation(border-anm, 3s, ease-out);
+    @include mediaXs {
+      width: 60%;
+    }
+    img {
+      border: solid $border #fff;
+      display: block;
+      height: auto;
+      width: 100%;
+      @include animation(rotate, 4s, step-end);
+    }
+  }
+  &-ttl {
+    margin: 0 auto;
+    @include mediaSp {
+      padding-top: 32px;
+      width: 45%;
+    }
+    @include mediaXs {
+      padding-top: 64px;
+      width: 60%;
+    }
+  }
+  h1 {
+    @keyframes fadein {
+      from {
+        opacity: 0;
+        transform: translateX(60px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    @keyframes flashing {
+      0% {
+        color: #333;
+      }
+      90% {
+        opacity: 0;
+      }
+      100% {
+        color: $mainColor;
+        opacity: 1;
+      }
+    }
+    margin-top: 24px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    @include mediaSp {
+      margin-top: 16px;
+      font-size: 2em;
+    }
+    &:nth-of-type(1) {
+      @include animation(fadein, 2s, ease);
+    }
+    &:nth-of-type(2) {
+      @include animation(fadein, 2.6s, ease);
+    }
+    &:nth-of-type(3) {
+      @include animation(fadein, 3.2s, ease);
+    }
+    &:nth-of-type(4) {
+      @include animation(fadein, 3.8s, ease);
+    }
+  }
+  span {
+    color: $mainColor;
+    font-size: 1.1em;
+    @include animation(flashing, 4s, step-end);
+  }
+}
+// @-webkit-keyframes border-anm {
+//   @include logoAnm;
+// }
+// @-webkit-keyframes rotate {
+//   @include rotate;
+// }
+/*** subttl ***/
+.subttl {
+  padding: 70px 0 90px 0;
+  text-align: center;
+  @include bgImg('img/bg-01.png');
+  h1 {
+    margin-bottom: 60px;
+    color: #fff;
+  }
+}
+.linkbtn {
+  position: relative;
+  padding: 15px 60px;
+  border: solid 2px #bbb;
+  @include box(lighten($subColor, 40%), #333, null);
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    z-index: 99;
+    border: solid 2px transparent;
+    box-sizing:content-box;
+    height: 0;
+    width: 0;
+  }
+  &:hover {
+    color: $mainColor;
+    text-decoration: none;
+    transition: {
+      delay: $duration * 2;
+    }
+  }
+  &:hover::before, &:hover::after {
+    height: 100%;
+    width: 100%;
+  }
+  &:hover::before {
+    border: {
+      top-color: $mainColor;
+      right-color: $mainColor;
+    }
+    transition: height $duration $duration, width $duration;
+  }
+  &:hover::after {
+    border: {
+      bottom-color: $mainColor;
+      left-color: $mainColor;
+    }
+    transition: height $duration, width $duration $duration;
+  }
+}
+/*** feature ***/
+.feature {
+  padding: 72px 0;
+  background-color: #eee;
+  .row {
+    position: relative;
+    margin-bottom: 96px;
+    &::after {
+      position: absolute;
+      content: '';
+      bottom: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #999;
+      width: 80%;
+      height: 1px;
+      // -moz-transform: translateX(-50%);
+      // -webkit-transform: translateX(-50%);
+      // -ms-transform: translateX(-50%);
+    }
+    &:nth-of-type(4) {
+      margin-bottom: 0;
+    }
+    &:nth-of-type(4)::after {
+      display: none;
+    }
+  }
+}
+.section-ttl {
+  margin-bottom: 80px;
+  color: darken($subColor, 20%);
+  letter-spacing: 2px;
+  text-align: center;
+  h1 {
+    font-weight: 900;
+    margin-bottom: 8px;
+  }
+  h2 {
+    font-size: 1.5em;
+  }
+}
+.function {
+  &-ttl {
+    display: inline-block;
+    margin-bottom: 16px;
+    padding: 8px;
+    border: solid 1px #333;
+    text-align: center;
+    @include box(#fff, darken($mainColor, 10%), 900);
+  }
+  &-txt {
+    font-size: 1.2em;
+    line-height: 2;
+    margin-bottom: 32px;
+    span {
+      color: darken($mainColor, 10%);
+    }
+  }
+}
+.code-ttl {
+  display: inline-block;
+  padding: 8px;
+  background-color: #fff;
+  box-shadow: 5px 5px 5px;
+  &-sass {
+    background-color: lighten($mainColor, 20%);
+  }
+}
+pre {
+  padding: 0 20px;
+  background-color: #404040;
+  box-shadow: 5px 5px 5px;
+}
+.linear {
+  background-color: #666;
+  font-weight: 900;
+}
+/*** voice ***/
+.voice {
+  padding: 72px 0;
+  @include bgImg('img/bg-02.png');
+  .container {
+    padding: 60px 60px 30px 30px;
+    background: rgba(#fff, 0.8);
+    @include mediaSp {
+      padding: 30px;
+    }
+  }
+  li {
+    -webkit-align-items: center;
+    -ms-align-items: center;
+    align-items: center;
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display: flex;
+    margin-top: 20px;
+    padding: 8px;
+    background-color: lighten($subColor, 30%);
+    border-radius: 4px;
+  }
+}
+.icon {
+  margin-right: 20px;
+  background-color: lighten($subColor, 40%);
+  border: solid 2px $subColor;
+  border-radius: 4px;
+  // width: 100px;
+  max-width: 100px;
+  min-width: 100px;
+  height: 100px;
+}
+.man {
+  color: #0000cd;
+}
+.woman {
+  color: #b22222;
+}
+.lie {
+  padding-top: 8px;
+  font-size: 0.6em;
+}
+/*** bottom-btn ***/
+.bottom-btn {
+  h1 {
+    padding: 8px 0;
+    background-color: lighten($mainColor, 30%);
+    color: darken($subColor, 30%);
+  }
+  @include bgImg('img/bg-03.jpg');
+  @extend .subttl;
+}
+/*** footer ***/
+footer {
+  padding: 60px 20px 20px 20px;
+  background-color: lighten($subColor, 40%);
+  font-size: 0.9em;
+  text-align: center;
+  p {
+    margin-bottom: 12px;
+  }
+}

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- encode -->
+  <meta charset="utf-8">
+  <!-- Internet Explorer compatibility -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- viewport -->
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title></title>
+  <meta name="description" content="ページ内容">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet">
+  <!--
+  favicon
+  meta robots
+  twitter card
+  <link rel="canonical" href="正規化するURL">
+  -->
+</head>
+<body>
+<div class="wrap">
+<header>
+</header>
+<div class="main">
+
+  <div class="top">
+    <div class="inner">
+      <div class="container">
+        <div class="top-logo">
+          <img src="img/sass-logo.png" alt="logo">
+        </div>
+        <div class="top-ttl">
+          <h1><span>S</span>yntactically</h1>
+          <h1><span>A</span>wesome</h1>
+          <h1><span>S</span>tyle</h1>
+          <h1><span>S</span>heets</h1>
+        </div>
+      </div>
+    </div>
+  </div><!-- top end -->
+
+  <div class="subttl">
+    <h1><ruby>構文的に&nbsp;<rt>Syntactically</rt></ruby><br class="br-xs"><ruby>サイコーな&nbsp;<rt>Awesome</rt></ruby><br class="br-sp"><ruby>スタイルシート<rt>Stylesheets</rt></ruby></h1>
+    <a href="https://sass-lang.com/" class="linkbtn" target="_blank">公式サイトへ</a>
+  </div>
+
+  <section class="feature">
+    <div class="container">
+      <div class="section-ttl">
+        <h1>Sassの主な機能</h1>
+        <h2>効率良く、<br class="br-sp">わかりやすい<br class="br-xs">CSSを書くために</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-12 order-md-2 function">
+          <h3 class="function-ttl">入れ子(ネスト)構造</h3>
+          <p class="function-txt">HTMLのように入れ子構造で書くことができます。要素の親子関係がわかりやすくなるうえに、<span>同じセレクタを何度も書く必要がありません。</span></p>
+        </div>
+        <div class="col-md-4 col-6 order-md-0">
+          <h4 class="code-ttl">CSS</h4>
+          <pre><code class="prettyprint">
+.top-ttl {
+  margin: 0 auto;
+}
+<span class="linear">.top-ttl h1</span> {
+  font-weight: 900;
+  letter-spacing: 4px;
+}
+<span class="linear">.top-ttl h1 span</span> {
+  color: #C6538C;
+}
+          </code></pre>
+        </div>
+        <div class="col-md-4 col-6  order-md-1">
+          <h4 class="code-ttl code-ttl-sass">Sass</h4>
+          <pre><code class="prettyprint">
+.top-ttl {
+  margin: 0 auto;
+  <span class="linear">h1</span> {
+    font-weight: 900;
+    letter-spacing: 4px;
+    <span class="linear">span</span> {
+      color: #C6538C;
+    }
+  }
+}
+          </code></pre>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-12 order-md-1 function">
+          <h3 class="function-ttl">変数が使える</h3>
+          <p class="function-txt">他の多くのプログラミング言語と同様に変数を使うことができます。これによって、<span>スムーズなコーディングとメンテナンス</span>が実現できます。</p>
+        </div>
+        <div class="col-md-4 col-6 order-md-0">
+          <h4 class="code-ttl">CSS</h4>
+          <pre><code class="prettyprint">
+h1 {
+  <span class="linear">color: #C6538C;</span>
+  font-size: 2em;
+}
+p {
+  <span class="linear">color: #C6538C;</span>
+  font-weight: 900;
+}
+
+          </code></pre>
+        </div>
+        <div class="col-md-4 col-6 order-md-2">
+          <h4 class="code-ttl code-ttl-sass">Sass</h4>
+          <pre><code class="prettyprint">
+<span class="linear">$color: #C6538C;</span>
+h1 {
+  color: $color;
+  font-size: 2em;
+}
+p {
+  color: $color;
+  font-weight: 900;
+}
+          </code></pre>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-12 function">
+          <h3 class="function-ttl">@mixinと@include</h3>
+          <p class="function-txt">@mixinでスタイルをテンプレートのようにあらかじめ定義しておくことで、@includeを使ってあとからいつでも呼び出すことができます。</p>
+        </div>
+        <div class="col-md-4 col-6">
+          <h4 class="code-ttl">CSS</h4>
+          <pre><code class="prettyprint">
+
+.boxA {
+  <span class="linear">color: #fff;</span>
+  <span class="linear">font-size: 2em;</span>
+}
+.boxB {
+  margin: 0 auto;
+  <span class="linear">color: #fff;</span>
+  <span class="linear">font-size: 1.5em;</span>
+}
+
+          </code></pre>
+        </div>
+        <div class="col-md-4 col-6">
+          <h4 class="code-ttl code-ttl-sass">Sass</h4>
+          <pre><code class="prettyprint">
+@mixin box($fontSize: 2em) {
+  color: #fff;
+  font-size: $fontSize;
+}
+.boxA {
+  <span class="linear">@include box;</span>
+}
+.boxB {
+  margin: 0 auto;
+  <span class="linear">@include box(1.5em);</span>
+}
+          </code></pre>
+        </div>
+      </div>
+    </div>
+  </section><!-- feature end -->
+
+  <section class="voice">
+    <div class="container">
+      <div class="section-ttl">
+        <h1>利用者の声</h1>
+      </div>
+      <ul>
+        <li>
+          <div class="icon">
+            <img src="img/icon-01.svg" alt="アイコン">
+          </div>
+          <div class="user">
+            <p>CSSの基本を理解していればとりあえず、で使い始めることができます。（拡張子の.cssを.scssに変えるだけ！）ぜひ皆さんも使ってみてください！<br><span class="man">（すれの さん / 30代男性）</span></p>
+          </div>
+        </li>
+        <li>
+          <div class="icon">
+            <img src="img/icon-02.svg" alt="アイコン">
+          </div>
+          <div class="user">
+            <p>Sassを使い始めてから年収が3倍になり、人生が変わりました！<br><span class="woman">（lieさん / 20代女性）</span></p>
+            <p class="lie">※学習効果には個人差があります。</p>
+          </div>
+        </li>
+        <li>
+          <div class="icon">
+            <img src="img/icon-03.svg" alt="アイコン">
+          </div>
+          <div class="user">
+            <p>Sassのおかげで不眠症が治り、毎日の作業効率が上がりました！<br><span class="man">（osu さん / 20代男性）</span></p>
+            <p class="lie">※個人の感想です。</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section><!-- voice-->
+
+  <div class="bottom-btn">
+    <h1>今すぐSassを<br class="br-xs">使ってみる！</h1>
+    <a href="https://sass-lang.com/" class="linkbtn" target="_blank">公式サイトへ</a>
+  </div>
+</div><!-- main end-->
+
+<footer>
+  <p>このページは<a href="https://twitter.com/threnox" target="_blank">@threnox</a>がwebサイト制作の練習として作ったものであり、SassおよびSass公式サイトとは関係ありません。<br>※Safariでの動作確認が不十分かもしれません。</p>
+  <p>&copy; 2019 すれの</p>
+</footer>
+</div><!-- warp end-->
+
+<!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Popper.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<!-- Bootstrap JS-->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- google-code-prettify -->
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=css&skin=desert"></script>
+<!-- JS -->
+  <script src="script.js"></script>
+</body>
+</html>
